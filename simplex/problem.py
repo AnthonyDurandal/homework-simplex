@@ -1,8 +1,10 @@
 from enum import Enum
+
+class ProblemType(Enum):
+    MIN = 'Max'
+    MAX = 'Min'
 class Relationship(Enum):
     EQUALITY = '='
-    INF = '<'
-    SUP = '>'
     INF_OR_EQ = '<='
     SUP_OR_EQ = '>='
 
@@ -33,6 +35,7 @@ class ObjectiveFunction(Constraint):
     
 
 class Problem:
+    problem_type : ProblemType = ProblemType.MAX
     descision_variables = None
     constraints: list[Constraint] = None
     objective_function = None
@@ -40,7 +43,8 @@ class Problem:
     variables: list[Term] = []
     solution: list[Term] = []
 
-    def __init__(self, descision_variables: list[str], constraints: list[Constraint], objective_function):
+    def __init__(self, problem_type, descision_variables: list[str], constraints: list[Constraint], objective_function):
+        self.problem_type = problem_type
         self.descision_variables = descision_variables
         self.variables = descision_variables.copy()
         self.constraints = constraints
