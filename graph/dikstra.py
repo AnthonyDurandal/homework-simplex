@@ -2,7 +2,7 @@ import functools
 import math
 
 class Edge():
-    length : str = None
+    length : int = None
     vertex = None
 
     def __init__(self, vertex, length):
